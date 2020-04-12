@@ -10,7 +10,6 @@
             <field name="res_model">hospital.patient</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <field name="context" eval="{'search_default_patient_minor': 1}"/>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">Create the first patient
                 </p>
@@ -61,6 +60,8 @@
                     <!-- <field name="description"/> -->
                     <filter name="patient_minor" string="Age Group Minor"
                             domain="[('age_group', '=', 'Minor')]"/>
+                    <filter name="patient_major" string="Age Group Major"
+                            domain="[('age_group', '=', 'Major')]"/>
                     <!-- <group string="Group By">
                         <filter name="by_responsible" string="Responsible"
                                 context="{'group_by': 'responsible_id'}"/>
