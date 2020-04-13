@@ -14,11 +14,10 @@ class Patient(models.Model):
     note = fields.Text()
     age = fields.Integer(required=True,default=1)
     gender = fields.Selection((('male','Male'),('female','Female')),required=True)
-    # gender = fields.selection(('male','Male'),('female','Female'))
     age_group = fields.Char(compute='_age_group',store=True)
-    # age(int)
-    # age_group(char) display major when age > 20 other display minor
-    # gender(selector)
+    # 1 patient 1 doctor / 1 doctor many patient
+    doctor_name = fields.Many2one('hospital.doctor', ondelete='set null', string="Doctor", index=True)
+    color = fields.Integer()
 
     @api.depends('age')
     def _age_group(self):

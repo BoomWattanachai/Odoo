@@ -27,6 +27,7 @@
         # "views/course_view.xml",
         # "views/session_view.xml",
         "views/patient_view.xml",
+        "views/doctor_view.xml",
     ],
     # only loaded in demonstration mode
     'demo': [],
