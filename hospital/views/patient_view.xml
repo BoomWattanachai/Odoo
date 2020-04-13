@@ -9,7 +9,7 @@
             <field name="name">Patient</field>
             <field name="res_model">hospital.patient</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,kanban</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">Create the first patient
                 </p>
@@ -28,10 +28,10 @@
                             <field name="gender"/>
                             <field name="age"/>
                             <field name="age_group"/>
+                            <field name="doctor_name"/>
                         </group>
                         <group>
                             <field name="note"/>
-                            
                         </group>
                     </sheet>
                 </form>
@@ -43,10 +43,11 @@
             <field name="name">patient.tree</field>
             <field name="model">hospital.patient</field>
             <field name="arch" type="xml">
-                <tree string="Course Tree">
+                <tree string="Patient Tree">
                     <field name="name"/>
                     <field name="age_group"/>
                     <field name="gender"/>
+                    <field name="doctor_name"/>
                 </tree>
             </field>
         </record>
@@ -70,13 +71,63 @@
             </field>
         </record>
 
+        <!-- kanban view -->
+        <record model="ir.ui.view" id="view_hospital_patient_kanban">
+            <field name="name">hospital.patient.kanban</field>
+            <field name="model">hospital.patient</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="doctor_name">
+                    <field name="color"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div
+                                    t-attf-class="oe_kanban_color_{{kanban_getcolor(record.color.raw_value)}}
+                                                  oe_kanban_global_click_edit oe_semantic_html_override
+                                                  oe_kanban_card {{record.group_fancy==1 ? 'oe_kanban_card_fancy' : ''}}">
+                                <div class="oe_dropdown_kanban">
+                                    <!-- dropdown menu -->
+                                    <div class="oe_dropdown_toggle">
+                                        <i class="fa fa-bars fa-lg" title="Manage" aria-label="Manage"/>
+                                        <ul class="oe_dropdown_menu">
+                                            <li>
+                                                <a type="delete">Delete</a>
+                                            </li>
+                                            <li>
+                                                <ul class="oe_kanban_colorpicker"
+                                                    data-field="color"/>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="oe_clear"></div>
+                                </div>
+                                <div t-attf-class="oe_kanban_content">
+                                    <!-- title -->
+                                    Patient name:
+                                    <field name="name"/>
+                                    <br/>
+                                    Age:
+                                    <field name="age"/>
+                                    <br/>
+                                    Gender:
+                                    <field name="gender"/>
+                                    <br/>
+                                    Note:
+                                    <field name="note"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
 
 
         <!-- top level menu: no parent -->
         <menuitem id="main_hospital_menu" name="Hospital"/>
         <!-- A first level in the left side menu is needed
              before using action= attribute -->
-        <menuitem id="hospital_menu" name="Patient" parent="main_hospital_menu" action="patient_list_action"/>
+        <menuitem id="hospital_menu_patient" name="Patient" parent="main_hospital_menu" action="patient_list_action"/>
         <!-- <menuitem id="courses_menu" name="Courses" parent="openacademy_menu" action="course_list_action"/> -->
 
 </odoo>
