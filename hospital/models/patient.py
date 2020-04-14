@@ -18,7 +18,10 @@ class Patient(models.Model):
     age_group = fields.Char(compute='_age_group',store=True,track_visibility='onchange')
     # 1 patient 1 doctor / 1 doctor many patient
     doctor_name = fields.Many2one('hospital.doctor', ondelete='set null', string="Doctor", index=True,track_visibility='onchange')
+    # doctor_ref = fields.Many2one('res.users', ondelete='set null', string="User", index=True)
     color = fields.Integer()
+    
+    # current_user = fields.Many2one('res.users','Current User', default=lambda self: self.env.uid, readonly=True,store=True) 
 
     @api.depends('age')
     def _age_group(self):
