@@ -11,8 +11,7 @@
             <field name="perm_create" eval="1"/>
             <field name="perm_unlink" eval="1"/>
             <field name="domain_force">
-                ['|', ('doctor_name.user_ref.id','=', user.id),
-                      ('doctor_name.user_ref.id','!=', user.id)]
+                [(1,'=', 1)]
             </field>
         </record>
 
