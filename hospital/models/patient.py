@@ -20,7 +20,17 @@ class Patient(models.Model):
     doctor_name = fields.Many2one('hospital.doctor', ondelete='set null', string="Doctor", index=True,track_visibility='onchange')
     # doctor_ref = fields.Many2one('res.users', ondelete='set null', string="User", index=True)
     color = fields.Integer()
-    
+
+    patient_code = fields.Char(string="Service Number", readonly=True, required=True, copy=False, default='PTXXX')
+
+    @api.model
+    def create(self, vals):
+        if vals.get('patient_code', 'New') == 'New':
+            vals['patient_code'] = self.env['ir.sequence'].next_by_code(
+                'self.service_patient') or 'New'
+        result = super(Patient, self).create(vals)
+        return result
+
     # current_user = fields.Many2one('res.users','Current User', default=lambda self: self.env.uid, readonly=True,store=True) 
 
     @api.depends('age')

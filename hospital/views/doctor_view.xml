@@ -16,7 +16,7 @@
             </field>
         </record>
 
-
+        <!-- forn view -->
         <record model="ir.ui.view" id="doctor_form_view">
             <field name="name">doctor.form</field>
             <field name="model">hospital.doctor</field>
@@ -24,6 +24,7 @@
                 <form string="Doctor Form">
                     <sheet>
                         <group>
+                            <field name="doctor_code"/>
                             <field name="name"/>
                             <field name="user_ref"/>
                             <field name="gender"/>
@@ -34,12 +35,13 @@
             </field>
         </record>
 
-
+        <!-- tree view -->
         <record model="ir.ui.view" id="doctor_tree_view">
             <field name="name">doctor.tree</field>
             <field name="model">hospital.doctor</field>
             <field name="arch" type="xml">
                 <tree string="Doctor Tree">
+                    <field name="doctor_code"/>
                     <field name="name"/>
                     <field name="age"/>
                     <field name="gender"/>
@@ -47,19 +49,17 @@
             </field>
         </record>
 
-        <!-- <record model="ir.ui.view" id="patient_search_view">
-            <field name="name">patient.search</field>
-            <field name="model">hospital.patient</field>
-            <field name="arch" type="xml">
-                <search>
-                    <field name="name"/>
-                    <filter name="patient_minor" string="Age Group Minor"
-                            domain="[('age_group', '=', 'Minor')]"/>
-                    <filter name="patient_major" string="Age Group Major"
-                            domain="[('age_group', '=', 'Major')]"/>
-                </search>
-            </field>
-        </record> -->
+        <!-- sequence -->
+        <record id="sequence_doctor" model="ir.sequence">
+            <field name="name">Self Service</field>
+            <field name="code">self.service_doctor</field>
+            <field name="active">TRUE</field>
+            <field name="prefix">DR</field>
+            <field name="padding">3</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+
 
 
 

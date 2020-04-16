@@ -1,10 +1,6 @@
 <odoo>
 
         <!-- window action -->
-        <!--
-            The following tag is an action definition for a "window action",
-            that is an action opening a view or a set of views
-        -->
         <record model="ir.actions.act_window" id="patient_list_action">
             <field name="name">Patient</field>
             <field name="res_model">hospital.patient</field>
@@ -25,6 +21,7 @@
                 <form string="Patient Form">
                     <sheet>
                         <group>
+                            <field name="patient_code"/>
                             <field name="name"/>
                             <field name="gender"/>
                             <field name="age"/>
@@ -50,6 +47,7 @@
             <field name="arch" type="xml">
                 <tree string="Patient Tree">
                     <!-- <field name="current_user" invisible="1"/> -->
+                    <field name="patient_code"/>
                     <field name="name"/>
                     <field name="age_group"/>
                     <field name="gender"/>
@@ -110,6 +108,8 @@
                                 </div>
                                 <div t-attf-class="oe_kanban_content">
                                     <!-- title -->
+                                    Patient code:
+                                    <field name="patient_code"/>
                                     Patient name:
                                     <field name="name"/>
                                     <br/>
@@ -130,33 +130,16 @@
         </record>
 
         
-        <!-- <record id="student_free_view" model="ir.ui.view">
-        	<field name="name">Student Form</field>
-        	<field name="model">student.student</field>
-        	<field name="arch" type="xml">
-            	<form string="Student">
-                	<sheet>
-                    	<field name="photo" widget="image" class="oe_left oe_avatar" />
-                    	<div class="oe_title">
-                        	<h3>
-                            	<field name="name"/>
-                        	</h3>
-                    	</div>
-                    	<group>
-                        	<group>
-                            	<field name="age"/>
-                            	<field name="gender"/>
-                        	</group>
-                        	<group>
-                            	<field name="student_dob"/>
-                            	<field name="student_blood_group"/>
-                            	<field name="nationality"/>
-                        	</group>
-                    	</group>
-                	</sheet>
-            	</form>
-        	</field>
-        </record> -->
+       <!-- sequence -->
+        <record id="sequence_patient" model="ir.sequence">
+            <field name="name">Self Service</field>
+            <field name="code">self.service_patient</field>
+            <field name="active">TRUE</field>
+            <field name="prefix">PT</field>
+            <field name="padding">3</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
 
 
 
