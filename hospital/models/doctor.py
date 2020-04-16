@@ -13,3 +13,13 @@ class Doctor(models.Model):
     # 1 patient 1 doctor / 1 doctor many patient
     patient_name = fields.One2many('hospital.patient', 'doctor_name', ondelete='set null', string="Sessions")
     user_ref = fields.Many2one('res.users', ondelete='set null', string="User", index=True,required=True)
+
+    doctor_code = fields.Char(string="Service Number", readonly=True, required=True, copy=False, default='DRXXX')
+
+    @api.model
+    def create(self, vals):
+        if vals.get('doctor_code', 'New') == 'New':
+            vals['doctor_code'] = self.env['ir.sequence'].next_by_code(
+                'self.service_doctor') or 'New'
+        result = super(Doctor, self).create(vals)
+        return result
