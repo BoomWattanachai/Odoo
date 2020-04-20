@@ -23,3 +23,7 @@ class Doctor(models.Model):
                 'self.service_doctor') or 'New'
         result = super(Doctor, self).create(vals)
         return result
+
+
+
+      
