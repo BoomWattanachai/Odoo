@@ -25,6 +25,7 @@
     'data': [
         'security/security.xml',
         "security/ir.model.access.csv",
+        "wizards/create_appointment_view_wizards.xml",
         # "views/course_view.xml",
         # "views/session_view.xml",
         "views/patient_view.xml",

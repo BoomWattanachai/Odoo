@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
         <!-- window action -->
@@ -19,14 +20,26 @@
             <field name="model">hospital.patient</field>
             <field name="arch" type="xml">
                 <form string="Patient Form">
+                    <!-- <header>
+                        <button name="open_wizard" string="Create Appointment" type="object" class="oe_highlight"/>
+                    </header> -->
+                    
                     <sheet>
-                        <group>
-                            <field name="patient_code"/>
-                            <field name="name"/>
-                            <field name="gender"/>
-                            <field name="age"/>
-                            <field name="age_group"/>
-                            <field name="doctor_name"  options="{'no_create': True, 'no_create_edit':True}"/>
+                        <group string="Patient Information">
+                            <div class="oe_button_box" name="button_box">
+                                <button name="create_appointment_wizard" string="Create Appointment" type="object" 
+                                        class="oe_stat_button" icon="fa-calendar"/>
+                            </div>
+                            <group>
+                                <field name="patient_code"/>
+                                <field name="name"/>
+                                <field name="gender"/>
+                                <field name="age"/>
+                                <field name="age_group"/>
+                                <field name="doctor_name"  options="{'no_create': True, 'no_create_edit':True}"/>
+                            </group>
+                        
+                            
                         </group>
                         <group>
                             <field name="note"/>
@@ -133,13 +146,21 @@
        <!-- sequence -->
         <record id="sequence_patient" model="ir.sequence">
             <field name="name">Self Service</field>
-            <field name="code">self.service_patient</field>
+            <field name="code">hospital.patient</field>
             <field name="active">TRUE</field>
             <field name="prefix">PT</field>
             <field name="padding">3</field>
-            <field name="number_next">1</field>
+            <!-- <field name="number_next">1</field> -->
             <field name="number_increment">1</field>
         </record>
+
+        <!-- <act_window id="launch_session_wizard"
+                    name="Add Appointment"
+                    src_model="hospital.patient"
+                    res_model="create.appointment"
+                    view_mode="form"
+                    target="new"
+                    key2="client_action_multi"/> -->
 
 
 
