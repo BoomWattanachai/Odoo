@@ -18,9 +18,8 @@ class Doctor(models.Model):
 
     @api.model
     def create(self, vals):
-        if vals.get('doctor_code', 'New') == 'New':
-            vals['doctor_code'] = self.env['ir.sequence'].next_by_code(
-                'self.service_doctor') or 'New'
+        vals['doctor_code'] = self.env['ir.sequence'].next_by_code(
+                'hospital.doctor') or '/'
         result = super(Doctor, self).create(vals)
         return result
 

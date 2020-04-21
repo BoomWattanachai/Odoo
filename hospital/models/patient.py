@@ -25,9 +25,9 @@ class Patient(models.Model):
 
     @api.model
     def create(self, vals):
-        if vals.get('patient_code', 'New') == 'New':
-            vals['patient_code'] = self.env['ir.sequence'].next_by_code(
-                'self.service_patient') or 'New'
+        # if vals.get('patient_code', 'New') == 'New':
+        vals['patient_code'] = self.env['ir.sequence'].next_by_code(
+                'hospital.patient') or '/'
         result = super(Patient, self).create(vals)
         return result
 
@@ -40,3 +40,28 @@ class Patient(models.Model):
                 r.age_group = "Major"
             else:
                 r.age_group = "Minor"
+
+    # @api.model
+    # def _go_to_wizard(self):
+    #     return {
+    #         'type': 'ir.actions.act_window',
+    #         'name': '%(hospital.create_appointment_wizard)d',
+    #         'view_mode': 'form', 
+    #         'target': 'new',
+    #         'res_model': 'hospital.patient',
+    #         'context': {'name': self.name} 
+    #     }
+
+    @api.multi
+    def create_appointment_wizard(self):
+        return {
+            'id': 'launch_appointment_wizard',
+            'name': 'Create Appointment',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'src_model': 'hospital.patient',
+            'res_model': 'create.appointment',
+            'target': 'new',
+            'type': 'ir.actions.act_window',
+            'key2': 'client_action_multi'
+        }

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
         <record model="ir.actions.act_window" id="appointment_list_action">
@@ -8,33 +9,34 @@
             <!-- <field name="view_mode">tree,form</field> -->
         </record>
 
-        <record model="ir.ui.view" id="session_tree_view">
+        <record model="ir.ui.view" id="appointment_tree_view">
             <field name="name">appointment.tree</field>
             <field name="model">hospital.appointment</field>
             <field name="arch" type="xml">
                 <tree string="Appointment Tree">
-                    <field name="start_date_time"/>
-                    <field name="end_date_time"/>
+                    
+                    <!-- <field name="end_date_time"/> -->
                     <!-- <field name="end_date_time"/> -->
                     <!-- <field name="doctor.doctor_code"/> -->
                     <!-- <field name="doctor_code"/> -->
                     <field name="doctor_code_name"/>
                     <!-- <field name="patient_code"/> -->
                     <field name="patient_code_name"/>
+                    <field name="start_date_time"/>
                 </tree>
             </field>
         </record>
 
-        <!-- session form view -->
-        <record model="ir.ui.view" id="session_form_view">
+        <!-- form view -->
+        <record model="ir.ui.view" id="appointment_form_view">
             <field name="name">appointment.form</field>
             <field name="model">hospital.appointment</field>
             <field name="arch" type="xml">
-                <form string="Session Form">
+                <form string="Appointment Form">
                     <sheet>
                         <group>
                             <field name="start_date_time"/>
-                            <field name="end_date_time"/>
+                            <!-- <field name="end_date_time"/> -->
                             <!-- <field name="doctor.doctor_code" /> -->
                             <field name="doctor_code"/>
                             <field name="doctor" options="{'no_create': True, 'no_create_edit':True}"/>
@@ -48,11 +50,11 @@
         </record>
 
         <!-- calendar view -->
-        <record model="ir.ui.view" id="session_calendar_view">
+        <record model="ir.ui.view" id="appointment_calendar_view">
             <field name="name">appointment.calendar</field>
             <field name="model">hospital.appointment</field>
             <field name="arch" type="xml">
-                <calendar string="Appointment Calendar" date_start="start_date_time" date_stop="end_date_time" color="doctor">
+                <calendar string="Appointment Calendar" date_start="start_date_time" date_stop="start_date_time" color="doctor">
                     <field name="start_date_time"/>
                     <!-- <field name="doctor_code"/> -->
                     <field name="doctor_code_name"/>
