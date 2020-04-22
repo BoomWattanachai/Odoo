@@ -54,7 +54,8 @@
             <field name="name">appointment.calendar</field>
             <field name="model">hospital.appointment</field>
             <field name="arch" type="xml">
-                <calendar string="Appointment Calendar" date_start="start_date_time" date_stop="start_date_time" color="doctor">
+                <calendar   string="Appointment Calendar" date_start="start_date_time" 
+                            date_stop="start_date_time" color="doctor" quick_add="false">
                     <field name="start_date_time"/>
                     <!-- <field name="doctor_code"/> -->
                     <field name="doctor_code_name"/>
