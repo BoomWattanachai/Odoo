@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <odoo>
+
+        <!-- Add instructor field to existing view -->
+        <record model="ir.ui.view" id="contact_form_view">
+            <field name="name">inheritmodule.product</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <field name="list_price" position="replace">
+                    <field name="retail_price" widget='monetary'/>
+                </field>
+                <field name="retail_price" position="after">
+                    <field name="wholesales_price" widget='monetary'/>
+                </field>
+                <field name="standard_price" position="replace">
+                    <field name="cost_price" widget='monetary'/>
+                </field>
+                <notebook position="inside">
+                    <page string="Unit of Measures">
+                        <group>
+                            <field name="sales_unit_of_measure" placeholder="Unit(s)"/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="contact_list_action">
+            <field name="name">Product</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">kanban,tree,form</field>
+        </record>
+
+        
+
+        
+</odoo>
