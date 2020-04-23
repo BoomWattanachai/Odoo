@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <odoo>
+
+        <menuitem id="main_hospital_menus" name="Sale"/>
+        
+        <menuitem id="contact_menu" name="Product"
+                  parent="main_hospital_menus"
+                  action="contact_list_action"/>
+
+        
+</odoo>
