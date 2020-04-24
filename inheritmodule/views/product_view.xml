@@ -16,13 +16,50 @@
                 <field name="standard_price" position="replace">
                     <field name="cost_price" widget='monetary'/>
                 </field>
-                <notebook position="inside">
+                <xpath expr="//page[@name='variants']" position="replace">
+                     <page name="unit_of_measures" string="Unit of Measures">
+                        <group>
+                            <field name="sales_unit_of_measure" placeholder="Unit(s)"/>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//group[@name='description']" position="replace">
+                        <group string="Thai Description for Customers" name="thai_description_for_customer">
+                            <field name="thai_discription" nolabel="1" placeholder="Thai Description for Customers"/>
+                        </group>
+                </xpath>
+                <xpath expr="//group[@name='thai_description_for_customer']" position="after">
+                        <group string="Eng Product Name" name="eng_product_name_group">
+                            <field name="eng_product_name" nolabel="1" placeholder="Eng Product Name"/>
+                        </group>
+                </xpath>
+                <xpath expr="//group[@name='eng_product_name_group']" position="after">
+                        <group string="Eng Description for Customers" name="eng_description_for_customer">
+                            <field name="eng_discription" nolabel="1" placeholder="Eng Description for Customers"/>
+                        </group>
+                </xpath>
+                <xpath expr="//page[@name='purchase']" position="after">
+                     <page name="inventory" string="Inventory">
+                        
+                    </page>
+                </xpath>
+                <!-- <notebook position="inside">
                     <page string="Unit of Measures">
                         <group>
                             <field name="sales_unit_of_measure" placeholder="Unit(s)"/>
                         </group>
                     </page>
-                </notebook>
+                </notebook> -->
+                 <!-- <field name="sales_unit_of_measure" position="after">
+                     <page string="Unit of Measures">
+                        <field name="unit_of_measures">
+                            <tree string="Unit of Measures">
+                                <field name="product_uom"/>
+                                <field name="bigger_ration"/>
+                            </tree>
+                        </field>
+                    </page>
+                </field> -->
             </field>
         </record>
 
