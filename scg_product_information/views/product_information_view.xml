@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <odoo>
+
+        <!-- Add instructor field to existing view -->
+        <record model="ir.ui.view" id="product_form_view">
+            <field name="name">inheritmodule.product</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <!-- General Information Tab -->
+                <field name="barcode" position="after">
+                    <field name="item_category"/>
+                </field>
+
+                <field name="list_price" position="replace">
+                    <field name="retail_price" widget='monetary'/>
+                </field>
+                <field name="retail_price" position="after">
+                    <field name="wholesales_price" widget='monetary'/>
+                </field>
+                <!-- <field name="standard_price" position="replace">
+                    <field name="cost_price" string="Cost Price" widget='monetary'/>
+                </field> -->
+
+                <!-- Unit of Measures Tab -->
+                <xpath expr="//page[@name='variants']" position="after">
+                     <page name="unit_of_measures" string="Unit of Measures">
+                        <group>
+                            <field name="sales_unit_of_measure" placeholder="Unit(s)"/>
+                        </group>
+                    </page>
+                </xpath>
+
+                <!-- Sales Tab -->
+                <xpath expr="//group[@name='description']" position="replace">
+                        <group string="Thai Description for Customers" name="thai_description_for_customer">
+                            <field name="thai_discription" nolabel="1" placeholder="Thai Description for Customers"/>
+                        </group>
+                </xpath>
+                <xpath expr="//group[@name='thai_description_for_customer']" position="after">
+                        <group string="Eng Product Name" name="eng_product_name_group">
+                            <field name="eng_product_name" nolabel="1" placeholder="Eng Product Name"/>
+                        </group>
+                </xpath>
+                <xpath expr="//group[@name='eng_product_name_group']" position="after">
+                        <group string="Eng Description for Customers" name="eng_description_for_customer">
+                            <field name="eng_discription" nolabel="1" placeholder="Eng Description for Customers"/>
+                        </group>
+                </xpath>
+                <!-- <xpath expr="//page[@name='purchase']" position="after">
+                     <page name="inventory" string="Inventory">
+                        
+                    </page>
+                </xpath> -->
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="product_list_action">
+            <field name="name">Product</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">kanban,tree,form</field>
+        </record>
+
+        
+
+        
+</odoo>
