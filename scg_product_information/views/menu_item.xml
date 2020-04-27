@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
  <odoo>
 
-        <menuitem id="main_product_menus" name="Product Information"/>
+       <menuitem id="main_product_menus" name="Product Information"/>
         
-        <menuitem id="product_menu" name="Product"
+       <menuitem id="product_menu" name="Product"
                   parent="main_product_menus"
                   action="product_list_action"/>
 
+       <menuitem id="unit_menu" name="Unit"
+                  parent="main_product_menus"
+                  action="unit_list_action"/>
         
 </odoo>

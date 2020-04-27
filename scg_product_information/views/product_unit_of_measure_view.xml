@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+        <record model="ir.actions.act_window" id="unit_list_action">
+            <field name="name">unit</field>
+            <field name="res_model">scg_product.product_unit</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create the first course
+                </p>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="unit_form_view">
+            <field name="name">unit.form</field>
+            <field name="model">scg_product.product_unit</field>
+            <field name="arch" type="xml">
+                <form string="Unit Form">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="unit_tree_view">
+            <field name="name">unit.tree</field>
+            <field name="model">scg_product.product_unit</field>
+            <field name="arch" type="xml">
+                <tree string="Unit Tree">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+</odoo>

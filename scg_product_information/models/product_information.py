@@ -12,6 +12,8 @@ class ProductInformation(models.Model):
 
     # Unit of Measures Tab
     # sales_unit_of_measure = fields.Integer(string="Sales Unit of Measure") #required=True
+    sales_unit_of_measure = fields.Many2many('scg_product.product_unit',
+                                            string="Sales Unit of Measure")
     
     # Sales Tab
     thai_discription = fields.Text(default='C1302 ซิดนีย์45 พร้อมฝา C91005 (Test)',readonly=True)
