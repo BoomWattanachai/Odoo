@@ -1,0 +1,19 @@
+version: '2'
+services:
+  odoo:
+    image: moomaster/odooj:12.0
+    depends_on:
+      - db
+    ports:
+      - "8070:8069"
+    volumes:
+      - ./config:/etc/odoo
+      - ./addons:/mnt/extra-addons
+  db:
+    image: postgres:11
+    ports:
+      - "5434:5432"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo

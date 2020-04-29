@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    
+        <record model="ir.ui.view" id="product_uom_form_view">
+            <field name="name">UoM Code</field>
+            <field name="model">uom.uom</field>
+            <field name="inherit_id" ref="uom.product_uom_form_view"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="uom_label"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="product_uom_tree_view">
+            <field name="name">uom.tree</field>
+            <field name="model">uom.uom</field>
+            <field name="inherit_id" ref="uom.product_uom_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="uom_label"/>
+                </field>
+                <field name="uom_label" position="after">
+                    <field name="factor"/>
+                </field>
+                <field name="factor" position="after">
+                    <field name="factor_inv"/>
+                </field>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

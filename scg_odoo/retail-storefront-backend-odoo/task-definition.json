@@ -1,0 +1,70 @@
+{
+    "family": "retail-storefront-backend-odoo-dev", 
+    "executionRoleArn": "arn:aws:iam::975086324241:role/ecsTaskExecutionRole",
+    "taskRoleArn": "arn:aws:iam::975086324241:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc", 
+    "containerDefinitions": [
+        {
+            "name": "retail-storefront-backend-odoo-dev",
+            "image": "975086324241.dkr.ecr.ap-southeast-1.amazonaws.com/retail-storefront-backend-odoo:latest",
+            "portMappings": [
+                {
+                    "containerPort": 8069, 
+                    "hostPort": 8069, 
+                    "protocol": "tcp"
+                }
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "retail-storefront-backend-odoo-dev",
+                    "awslogs-region": "ap-southeast-1",
+                    "awslogs-stream-prefix": "retail-storefront-backend-odoo-dev"
+                }
+            },
+            "mountPoints": [
+                {
+                  "sourceVolume": "var-lib-odoo-filestore",
+                  "containerPath": "/var/lib/odoo/filestore"
+                },
+                {
+                  "sourceVolume": "var-lib-odoo-session",
+                  "containerPath": "/var/lib/odoo/sessions"
+                },
+                {
+                  "sourceVolume": "var-lib-odoo-extra-addons",
+                  "containerPath": "/mnt/extras-addons"
+                }
+            ],
+            "essential": true
+        }
+    ], 
+    "requiresCompatibilities": [
+        "FARGATE"
+    ], 
+    "volumes": [
+        {
+          "name": "var-lib-odoo-filestore",
+           "efsVolumeConfiguration": {
+                "fileSystemId": "fs-695d7028",
+                "rootDirectory": "/filestore"
+            }
+        },
+        {
+            "name": "var-lib-odoo-session",
+            "efsVolumeConfiguration": {
+                "fileSystemId": "fs-695d7028",
+                "rootDirectory": "/sessions"
+            }
+        },
+        {
+            "name": "var-lib-odoo-extra-addons",
+            "efsVolumeConfiguration": {
+                "fileSystemId": "fs-695d7028",
+                "rootDirectory": "/extra-addons"
+            }
+        }
+    ],
+    "cpu": "512",
+    "memory": "1024"
+}
